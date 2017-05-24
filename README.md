@@ -21,7 +21,7 @@ With us you'll get the same performance, for less, much less, money.
 You can access FaaSpot using the FaaSpot client from the CLI, directly from the Python script (as a library), or by using the proprietary REST API.
 The FaaSpot’s command-line interface is the default method for interacting with FaaSpot and managing your functions.
 
-Version compatibility: Python 2.7,3.3-3.5
+Version compatibility: Python 2.7, 3.3-3.5
 
 > <b>Note:</b>
 >
@@ -42,10 +42,7 @@ To test FaaSpot, you can try the following commands.
 
 ```
 # Create a CLI profile, that contains your FaaSpot token credentials.
-fas profiles create profile my_profile -t MY_API_TOKEN
-
-# Use it..
-fas profiles use my_profile
+fas profiles create my_profile --username MY_USERNAME --token MY_API_TOKEN
 
 # Create hello.py sample script
 fas deployments samples --hello
@@ -181,6 +178,8 @@ You can use the command to list, add, get, remove, update a specific spot.
 * <b>get</b>: Retrieve info about a specific spot
 
 * <b>remove</b>: Reduce the number of spots by one
+
+* <b>refresh_ip</b>: Refresh spot instances public ip
 
 
 ## Executions
