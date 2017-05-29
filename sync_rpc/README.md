@@ -16,7 +16,7 @@ sudo apt-get install -y build-essential
 
 ### Install script requirments
 
-Download `sync.js` script to some folder. Inside the folder with the script, run the following command
+Download `sync.js` script and the `package.json` file to some folder. Inside the folder with the script, run the following command
 ```
 npm install
 ```
