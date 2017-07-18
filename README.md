@@ -62,6 +62,23 @@ fas deployments run hello -p "name=user1" --wait
 fas spots remove --wait
 ```
 
+### Sync deployments run
+
+By default, deployments are run in the background.
+You can run the deployments run command in a synced manner (wait until you have a response).
+
+Using the cli:
+```
+fas deployments run hello -p "name=user1" --wait
+```
+
+Using curl:
+```
+curl --header "Authorization: Token MY_API_TOKEN" https://rest.faaspot.com/api/sync/deployments/hello/rpc/?name=user1
+```
+
+
+## Faaspot CLI
 
 ### Usage
 

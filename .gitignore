@@ -17,3 +17,8 @@
 # virtual environment
 venv
 .env
+
+# Sphinx build
+_build
+_static
+_templates
