@@ -143,7 +143,7 @@ To add a spot to your spot's pool, you need to use the spots API:
 
     .. code-block:: sh
 
-       $ curl -X DELETE --header "Authorization: Token MY_TOKEN" https://rest.faaspot.com:443/api/spots/
+       $ curl -X DELETE --header "Authorization: Token MY_TOKEN" https://api.faaspot.com/v1/spots/
 
     This API will return the execution id of the spot removal task.
     If you want to get the execution status of that task, you will need to query the execution status.

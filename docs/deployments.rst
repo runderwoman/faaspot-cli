@@ -217,15 +217,15 @@ To run a deployment, you need to use the ``deployments run`` API.
     .. code-block:: sh
 
        $ curl -X PUT --header "Authorization: Token MY_API_TOKEN"
-       https://rest.faaspot.com/api/sync/deployments/DEPLOYMENT_NAME/rpc/?PARAMETER_1=VALUE_1&PARAMETER_2=VALUE_2
+       https://api.faaspot.com/v1/sync/deployments/DEPLOYMENT_NAME/rpc/?PARAMETER_1=VALUE_1&PARAMETER_2=VALUE_2
 
     You can also run the deployment in Asynchronously way, without ``/sync/`` in the url:
 
     .. code-block:: sh
 
-        $ EXECUTION_ID_STR=`curl --header "Authorization: Token MY_API_TOKEN" https://rest.faaspot.com/api/deployments/DEPLOYMENT_NAME/rpc/?PARAMETER=VALUE`
+        $ EXECUTION_ID_STR=`curl --header "Authorization: Token MY_API_TOKEN" https://api.faaspot.com/v1/deployments/DEPLOYMENT_NAME/rpc/?PARAMETER=VALUE`
         $ EXECUTION_ID=`sed -e 's/^"//' -e 's/"$//' <<< "$EXECUTION_ID_STR"`
-        $ curl --header "Authorization: Token MY_API_TOKEN" https://rest.faaspot.com/api/executions/$EXECUTION_ID
+        $ curl --header "Authorization: Token MY_API_TOKEN" https://api.faaspot.com/v1/executions/$EXECUTION_ID
 
     In the above sample you can see how to run a deployment using HTTP Request,
     and then how query the execution status of the deployment run task.

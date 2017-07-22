@@ -50,7 +50,7 @@ To get the status of some execution, you need to use the spots API:
 
     .. code-block:: sh
 
-       $ curl -X GET --header "Authorization: Token MY_TOKEN" https://rest.faaspot.com:443/api/executions/EXECUTION_ID
+       $ curl -X GET --header "Authorization: Token MY_TOKEN" https://api.faaspot.com/v1/executions/EXECUTION_ID
 
 A result of that api should look like that:
 
@@ -118,7 +118,7 @@ To get the current running executions
 
     .. code-block:: sh
 
-       $ curl -X GET --header "Authorization: Token MY_TOKEN" https://rest.faaspot.com:443/api/executions/?include_completed=False
+       $ curl -X GET --header "Authorization: Token MY_TOKEN" https://api.faaspot.com/v1/executions/?include_completed=False
 
     You can add to the request ``?include_completed=False`` or ``?include_completed=True``,
     To include completed executions or not.
