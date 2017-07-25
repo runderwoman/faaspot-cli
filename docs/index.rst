@@ -4,13 +4,13 @@
 FaaSpot Documentation
 =====================
 
-FaaSpot is a SaaS service that enables you to run functions as a service (FaaS),
+FaaSpot is a SaaS service that enables you to run Functions as a Service (FaaS),
 and reduce your monthly Cloud expenses.
 
-- You need us if you are using an expensive, powerful machine to run a smallset of tasks multiple times.
+- You need us if you are using an expensive, powerful machine to run a small set of tasks multiple times.
 - With FaaSpot you can replace the expensive machine with a much smaller one, and use FaaSpot to run your functions.
-- The cost of FaaSpot is fixed, you decide how much money you'll pay at the end of the month.
-- With FaaSpot you'll get scale out-of-the-box, for less, much less, money.
+- The cost of FaaSpot is fixed. You decide how much money you'll pay at the end of the month.
+- With FaaSpot you'll get scale out-of-the-box for less, much less, money.
 
 
 .. code-block:: sh
