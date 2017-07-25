@@ -294,7 +294,6 @@ Meaning that every item in the input list, represent a call to ``deployments run
     you will need to create a POST request to: https://api.faaspot.com/v1/deployments/DEPLOYMENT_NAME/bulk_rpc/,
     and to add to the request body the list of the parameters, in the following format: ``'[{"k1": "v1", "k2": "v2"}, {"k3": "v3", "k4": "v4"}]'``
 
-    For example:
     .. code-block:: sh
 
        $ curl -X POST --header "Content-Type: application/json" --header "Authorization: Token MY_API_TOKEN" \
@@ -306,3 +305,42 @@ Meaning that every item in the input list, represent a call to ``deployments run
 
     The ``bulk_run`` doesn't support blocking requests. The response is a list of executions ids.
     In order to get the executions status, need to run :ref:`executions get<get_execution_status>` command.
+
+
+
+Delete Deployments
+------------------
+
+To delete a new deployment, you need to use the ``deployments delete`` API.
+
+..  admonition:: CLI
+    :class: open-toggle
+
+    You can delete a deployment using the ``CLI``, for example:
+
+    .. code-block:: sh
+
+        $ fas deployments delete DEPLOYMENT_NAME
+
+
+..  admonition:: Python
+    :class: toggle
+
+    You can delete a deployment using the python-client:
+
+    .. code-block:: python
+
+       from faaspot import Faaspot
+       faaspot = Faaspot()
+       faaspot.deployments.delete(DEPLOYMENT_NAME)
+
+
+..  admonition:: HTTP Request
+    :class: toggle
+
+    You can delete a deployment using HTTP request
+
+    .. code-block:: sh
+
+       $ curl -X DELETE --header "Authorization: Token MY_API_TOKEN" https://api.faaspot.com:443/v1/deployments/DEPLOYMENT_NAME
+
