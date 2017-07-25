@@ -7,7 +7,7 @@ Executions
 Overview
 --------
 
-When you run some command in Asynchronously way, for example: :ref:`deployment run<run_deployment>`,
+When you run some command in non-blocking way, for example: :ref:`deployment run<run_deployment>`,
 the command will create execution that will run in the background,
 and the result of the API will be the execution id.
 You can then use the executions API to get the execution status or to see which executions are currently running.

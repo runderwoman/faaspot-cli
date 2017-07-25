@@ -183,7 +183,7 @@ To run a deployment, you need to use the ``deployments run`` API.
 ..  admonition:: Python
     :class: toggle
 
-    You can run a deployment in Synchronously way, using python-client, using the python-client:
+    You can run a deployment in blocking way (wait until the execution is completed), using the python-client:
 
     .. code-block:: python
 
@@ -196,7 +196,7 @@ To run a deployment, you need to use the ``deployments run`` API.
     - **name** The deployment name to run
     - (Optional) **wait** Boolean parameter, whether to wait for completion. Default is False.
 
-    If you want to run the deployment in Asynchronously way, and then to check the execution status of the deployment run,
+    If you want to run the deployment in non-blocking way, and then to check the execution status of the deployment run,
     you can run:
 
     .. code-block:: python
@@ -212,14 +212,14 @@ To run a deployment, you need to use the ``deployments run`` API.
     :class: toggle
 
     YYou can run a deployment using using the direct HTTP requests.
-    You can run deployment in a Synchronously way (wait until the execution is completed), with ``/sync/`` in the url.
+    You can run deployment in a blocking way (wait until the execution is completed), with ``/sync/`` in the url.
 
     .. code-block:: sh
 
        $ curl -X PUT --header "Authorization: Token MY_API_TOKEN"
        https://api.faaspot.com/v1/sync/deployments/DEPLOYMENT_NAME/rpc/?PARAMETER_1=VALUE_1&PARAMETER_2=VALUE_2
 
-    You can also run the deployment in Asynchronously way, without ``/sync/`` in the url:
+    You can also run the deployment in non-blocking way, without ``/sync/`` in the url:
 
     .. code-block:: sh
 

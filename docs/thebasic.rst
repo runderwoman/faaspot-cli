@@ -38,12 +38,12 @@ You have multiple ways to send requests to FaaSpot:
 Async Requests
 --------------
 
-Some of the requests are being executed asynchronously.
-When you run an asynchronously request, the result will be an execution id.
+Some of the requests are being executed non-blocking.
+When you run a non-blocking request, the result will be an execution id.
 In that case you'll need to run another request to get that execution status,
 in order to know if it's still in progress, or completed.
 
-You can send synchronous requests, that will block the client until there will be a response.
+You can send blocking requests, that will block the client until there will be a response.
 In the CLI you can use the ``--wait`` parameter.
 
 
