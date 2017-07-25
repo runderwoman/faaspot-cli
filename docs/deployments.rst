@@ -164,11 +164,11 @@ To run a deployment, you need to use the ``deployments run`` API.
     - **name** The deployment name to run
     - (Optional) **--wait** Boolean parameter, whether to wait for completion. Default is False.
 
-    To run deployment with multiple parameters, just append them in the command, for example:
+    To run deployment with multiple parameters, just add them in the parameter argument, for example:
 
     .. code-block:: sh
 
-        $ fas deployments run some_deployment -p "param_1=value_1" -p "param_2=value_2" --wait
+        $ fas deployments run some_deployment -p "param_1=value_1, param_2=value_2" --wait
 
     As you can see in the example above, you can use ``-p`` as a shortcut for ``--parameters``
 
@@ -219,7 +219,7 @@ To run a deployment, you need to use the ``deployments run`` API.
 ..  admonition:: HTTP Request
     :class: toggle
 
-    YYou can run a deployment using using the direct HTTP requests.
+    You can run a deployment using using the direct HTTP requests.
     You can run deployment in a blocking way (wait until the execution is completed), with ``/sync/`` in the url.
 
     .. code-block:: sh
@@ -237,6 +237,15 @@ To run a deployment, you need to use the ``deployments run`` API.
 
     In the above sample you can see how to run a deployment using HTTP Request,
     and then how query the execution status of the deployment run task.
+
+    For the non-blocking approach, you can also use POST request, to allow you to send the parameters in the request body,
+    instead of in the request url. For example:
+
+    .. code-block:: sh
+
+        $ curl -X POST --header "Content-Type: application/json" --header "Authorization: Token MY_API_TOKEN" \
+        https://api.faaspot.com:443/v1/deployments/hello/rpc/ -d '{"PARAMETER_1": "VALUE_1", "PARAMETER_2": "VALUE_2"}'
+
 
 
 Run Deployments In Bulk
@@ -283,12 +292,17 @@ Meaning that every item in the input list, represent a call to ``deployments run
 
     If you want to create a bulk run request using HTTP request,
     you will need to create a POST request to: https://api.faaspot.com/v1/deployments/DEPLOYMENT_NAME/bulk_rpc/,
-    and to add to the request body the list of the parameters, in the following format: ``{'values': '[{"k1": "v1", "k2": "v2"}, {"k3": "v3", "k4": "v4"}]'}``
+    and to add to the request body the list of the parameters, in the following format: ``'[{"k1": "v1", "k2": "v2"}, {"k3": "v3", "k4": "v4"}]'``
 
     For example:
     .. code-block:: sh
 
        $ curl -X POST --header "Content-Type: application/json" --header "Authorization: Token MY_API_TOKEN" \
-       https://api.faaspot.com:443/v1/deployments/hellom/bulk_rpc/ -d '{"values": [{"k2": "v2", "k1": "v1"}, {"k3": "v3", "k4": "v4"}]}'
+       https://api.faaspot.com:443/v1/deployments/DEPLOYMENT_NAME/bulk_rpc/ -d '[{"k1": "v1", "k2": "v2"}, {"k3": "v3", "k4": "v4"}]'
 
     The result of the above request is a list of executions ids, of all the related deployment executions.
+
+.. note::
+
+    The ``bulk_run`` doesn't support blocking requests. The response is a list of executions ids.
+    In order to get the executions status, need to run :ref:`executions get<get_execution_status>` command.
