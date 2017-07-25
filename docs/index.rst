@@ -9,7 +9,7 @@ and reduce your monthly Cloud expenses.
 
 - You need us if you are using an expensive, powerful machine to run a small set of tasks multiple times.
 - With FaaSpot you can replace the expensive machine with a much smaller one, and use FaaSpot to run your functions.
-- The cost of FaaSpot is fixed. You decide how much money you'll pay at the end of the month.
+- The cost of FaaSpot is predetermined. You know how much money you'll pay at the end of the month.
 - With FaaSpot you'll get scale out-of-the-box for less, much less, money.
 
 
