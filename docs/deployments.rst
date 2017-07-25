@@ -168,7 +168,7 @@ To run a deployment, you need to use the ``deployments run`` API.
 
     .. code-block:: sh
 
-        $ fas deployments run some_deployment -p "param_1=value_1, param_2=value_2" --wait
+        $ fas deployments run DEPLOYMENT_NAME -p "param_1=value_1, param_2=value_2" --wait
 
     As you can see in the example above, you can use ``-p`` as a shortcut for ``--parameters``
 
@@ -267,9 +267,9 @@ Meaning that every item in the input list, represent a call to ``deployments run
 
     .. code-block:: sh
 
-        $ fas deployments run_bulk some_deployment -p "k1=v1, k2=v2" -p "k3=v3, k4=v4"
+        $ fas deployments run_bulk DEPLOYMENT_NAME -p "k1=v1, k2=v2" -p "k3=v3, k4=v4"
 
-    The sample above, will execute 2 tasks of ``some_deployment``.
+    The sample above, will execute 2 tasks of ``DEPLOYMENT_NAME``.
     One with arguments k1=v1, k2=v2. And another one with arguments k3=v3, k4=v4.
     The result of the sample above will be a list of 2 executions id.
 
