@@ -164,10 +164,18 @@ To run a deployment, you need to use the ``deployments run`` API.
     - **name** The deployment name to run
     - (Optional) **--wait** Boolean parameter, whether to wait for completion. Default is False.
 
-    In this example we run the ``fas deployments run`` command in a synced manner (wait until you have a response),
+    To run deployment with multiple parameters, just append them in the command, for example:
+
+    .. code-block:: sh
+
+        $ fas deployments run some_deployment -p "param_1=value_1" -p "param_2=value_2" --wait
+
+    As you can see in the example above, you can use ``-p`` as a shortcut for ``--parameters``
+
+    In this example we run the ``fas deployments run`` command in a blocked manner (wait until you have a response),
     using the ``--wait`` parameter.
 
-    By default, without ``--wait``, deployments will run in the background,
+    By default, without ``--wait``, the command will run in a non-blocking manner,
     and the ``fas deployments run`` command will return the execution id of the task.
     You can then check that status of the execution task (completed or not), using the ``fas executions get`` command.
     You can read about the execution api in the :ref:`execution <get_execution_status>` page.
@@ -189,7 +197,7 @@ To run a deployment, you need to use the ``deployments run`` API.
 
        from faaspot import Faaspot
        faaspot = Faaspot()
-       faaspot.deployments.run(DEPLOYMENT_NAME, {'PARAMETER_1': 'VALUE_!', 'PARAMETER_2': 'VALUE_2'}, wait=True)
+       faaspot.deployments.run(DEPLOYMENT_NAME, {'PARAMETER_1': 'VALUE_1', 'PARAMETER_2': 'VALUE_2'}, wait=True)
 
     The deployments run function parameters:
 
@@ -229,3 +237,58 @@ To run a deployment, you need to use the ``deployments run`` API.
 
     In the above sample you can see how to run a deployment using HTTP Request,
     and then how query the execution status of the deployment run task.
+
+
+Run Deployments In Bulk
+-----------------------
+
+Sometimes you want to run the same deployment with different arguments.
+One way to do it, is to run the :ref:`run deployment <run_deployment>` multiple times, each time with different arguments.
+
+A faster way, is to use one request, with the data of all the different arguments.
+The way to do it, is to use ``deployment run_bulk`` request.
+The ``run_bulk`` require a list of group-of-parameters.
+Meaning that every item in the input list, represent a call to ``deployments run`` request, with a group-of-parameters.
+
+
+..  admonition:: CLI
+    :class: open-toggle
+
+    You can run a bulk of deployment using the ``CLI``, for example:
+
+    .. code-block:: sh
+
+        $ fas deployments run_bulk some_deployment -p "k1=v1, k2=v2" -p "k3=v3, k4=v4"
+
+    The sample above, will execute 2 tasks of ``some_deployment``.
+    One with arguments k1=v1, k2=v2. And another one with arguments k3=v3, k4=v4.
+    The result of the sample above will be a list of 2 executions id.
+
+
+..  admonition:: Python
+    :class: toggle
+
+    You can run a bulk of deployment using the python-client:
+
+    .. code-block:: python
+
+       from faaspot import Faaspot
+       faaspot = Faaspot()
+       args_list = [{'k1': 'v1', 'k2': 'v2'}, {'k3': 'v3', 'k4': 'v4'}]
+       id_list = faaspot.deployments.run_bulk(DEPLOYMENT_NAME, args_list)
+
+
+..  admonition:: HTTP Request
+    :class: toggle
+
+    If you want to create a bulk run request using HTTP request,
+    you will need to create a POST request to: https://api.faaspot.com/v1/deployments/DEPLOYMENT_NAME/bulk_rpc/,
+    and to add to the request body the list of the parameters, in the following format: ``{'values': '[{"k1": "v1", "k2": "v2"}, {"k3": "v3", "k4": "v4"}]'}``
+
+    For example:
+    .. code-block:: sh
+
+       $ curl -X POST --header "Content-Type: application/json" --header "Authorization: Token MY_API_TOKEN" \
+       https://api.faaspot.com:443/v1/deployments/hellom/bulk_rpc/ -d '{"values": [{"k2": "v2", "k1": "v1"}, {"k3": "v3", "k4": "v4"}]}'
+
+    The result of the above request is a list of executions ids, of all the related deployment executions.
