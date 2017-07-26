@@ -75,6 +75,51 @@ A result of that api should look like that:
     will wait until the execution is completed.
 
 
+Get Bulk Execution Status
+-------------------------
+
+Sometimes you have multiple executions that are running simultaneity.
+In that case, you may want to query the status of all of them using one request,
+instead of generation ``execution get`` request for each one of them separately.
+For that there is the ``execution get_bulk`` command.
+
+The results will be a list of execution-status.
+
+
+..  admonition:: CLI
+    :class: open-toggle
+
+    You can get the status of multiple executions using the CLI:
+
+    .. code-block:: sh
+
+        $ fas executions get_bulk -u EXECUTION_ID_1 -u EXECUTION_ID_2
+
+
+..  admonition:: Python
+    :class: toggle
+
+    You can get the status of multiple executions sing the python-client:
+
+    .. code-block:: python
+
+       from faaspot import Faaspot
+       faaspot = Faaspot()
+       faaspot.executions.get([EXECUTION_ID_1, EXECUTION_ID_1])
+
+
+..  admonition:: HTTP Request
+    :class: toggle
+
+    You can get the status of multiple executions using the direct HTTP requests:
+
+    .. code-block:: sh
+
+       $ curl -X POST --header "Content-Type: application/json" --header "Authorization: Token MY_API_TOKEN" \
+       https://api.faaspot.com:443/v1/executions/bulk/ -d '["EXECUTION_ID_1", "EXECUTION_ID_2"]'
+
+
+
 Get Executions list
 -------------------
 
